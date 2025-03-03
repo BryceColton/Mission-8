@@ -1,50 +1,44 @@
-﻿@{
-    ViewData["Title"] = ViewData["IsEdit"] != null && (bool)ViewData["IsEdit"] ? "Edit Task" : "Add Task";
+﻿@model Mission_8.Models.TaskModel
+
+@{
+    ViewData["Title"] = Model.TaskId == 0 ? "Add Task" : "Edit Task";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<form asp-action="SaveTask" method="post">
-    <input type="hidden" name="TaskId" value="@ViewData["TaskId"]" />
+<form asp-action="AddEditTask" method="post">
+    <input type="hidden" asp-for="TaskId" />
 
     <div class="form-group">
-        <label for="TaskName">Task Name</label>
-        <input type="text" class="form-control" id="TaskName" name="TaskName" required />
+        <label asp-for="TaskName"></label>
+        <input asp-for="TaskName" class="form-control" required />
     </div>
 
     <div class="form-group">
-        <label for="DueDate">Due Date</label>
-        <input type="date" class="form-control" id="DueDate" name="DueDate" />
+        <label asp-for="DueDate"></label>
+        <input asp-for="DueDate" type="date" class="form-control" />
     </div>
 
     <div class="form-group">
-        <label for="Quadrant">Quadrant</label>
-        <select class="form-control" id="Quadrant" name="Quadrant">
-            <option value="1">Quadrant I - Important / Urgent</option>
-            <option value="2">Quadrant II - Important / Not Urgent</option>
-            <option value="3">Quadrant III - Not Important / Urgent</option>
-            <option value="4">Quadrant IV - Not Important / Not Urgent</option>
+        <label asp-for="Quadrant"></label>
+        <select asp-for="Quadrant" class="form-control">
+            <option value="Quadrant I">Quadrant I - Important / Urgent</option>
+            <option value="Quadrant II">Quadrant II - Important / Not Urgent</option>
+            <option value="Quadrant III">Quadrant III - Not Important / Urgent</option>
+            <option value="Quadrant IV">Quadrant IV - Not Important / Not Urgent</option>
         </select>
     </div>
 
     <div class="form-group">
-        <label for="Category">Category</label>
-        <select class="form-control" id="Category" name="CategoryId">
-            @if (ViewData["Categories"] != null)
-            {
-                foreach (var category in (List<SelectListItem>)ViewData["Categories"])
-                {
-                    <option value="@category.Value">@category.Text</option>
-                }
-            }
-        </select>
+        <label asp-for="CategoryId"></label>
+        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
     </div>
 
     <div class="form-group form-check">
-        <input class="form-check-input" type="checkbox" id="Completed" name="Completed" />
-        <label class="form-check-label" for="Completed"> Mark as Completed</label>
+        <input class="form-check-input" type="checkbox" asp-for="Completed" />
+        <label class="form-check-label" asp-for="Completed"> Mark as Completed</label>
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    <a asp-action="Quadrants" class="btn btn-secondary">Cancel</a>
 </form>

@@ -61,7 +61,7 @@ namespace Mission_8.Controllers
                 }
 
                 _dbContext.SaveChanges();
-                return RedirectToAction("Quadrants"); // Redirect after save
+                return RedirectToAction("Confirmation"); // Redirect after save
             }
 
             // Reload categories if validation fails
@@ -71,6 +71,8 @@ namespace Mission_8.Controllers
 
             return View(task);
         }
+
+       
 
     }
 }

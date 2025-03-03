@@ -60,21 +60,17 @@ namespace Mission_8.Controllers
         [HttpPost]
         public IActionResult AddEditTask(TaskModel task)
         {
-            if (ModelState.IsValid)
-            {
                 if (task.TaskId == 0)
                 {
-    
+                    _dbContext.Tasks.Add(task); // Add new task
+                    _dbContext.SaveChanges();
                 }
                 else
                 {
                     _dbContext.Tasks.Update(task); // Update existing task
-                }
-
-
+                    _dbContext.SaveChanges();
             }
-            _dbContext.Tasks.Add(task); // Add new task
-            _dbContext.SaveChanges();
+
             return RedirectToAction("Confirmation"); // Redirect after save
 
             //// Reload categories if validation fails

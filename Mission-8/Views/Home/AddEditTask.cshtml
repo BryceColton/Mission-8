@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = ViewData["IsEdit"] != null && (bool)ViewData["IsEdit"] ? "Edit Task" : "Add Task";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="SaveTask" method="post">
+    <input type="hidden" name="TaskId" value="@ViewData["TaskId"]" />
+
+    <div class="form-group">
+        <label for="TaskName">Task Name</label>
+        <input type="text" class="form-control" id="TaskName" name="TaskName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DueDate">Due Date</label>
+        <input type="date" class="form-control" id="DueDate" name="DueDate" />
+    </div>
+
+    <div class="form-group">
+        <label for="Quadrant">Quadrant</label>
+        <select class="form-control" id="Quadrant" name="Quadrant">
+            <option value="1">Quadrant I - Important / Urgent</option>
+            <option value="2">Quadrant II - Important / Not Urgent</option>
+            <option value="3">Quadrant III - Not Important / Urgent</option>
+            <option value="4">Quadrant IV - Not Important / Not Urgent</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Category">Category</label>
+        <select class="form-control" id="Category" name="CategoryId">
+            @if (ViewData["Categories"] != null)
+            {
+                foreach (var category in (List<SelectListItem>)ViewData["Categories"])
+                {
+                    <option value="@category.Value">@category.Text</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group form-check">
+        <input class="form-check-input" type="checkbox" id="Completed" name="Completed" />
+        <label class="form-check-label" for="Completed"> Mark as Completed</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

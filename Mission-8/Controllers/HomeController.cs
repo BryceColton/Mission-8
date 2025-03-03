@@ -20,7 +20,15 @@ namespace Mission_8.Controllers
         }
         public IActionResult Quadrants()
         {
-            var tasks = new List<TaskModel>();
+            var tasks = _dbContext.Tasks
+            .Where(t => !t.Completed) // Only show incomplete tasks
+            .ToList();
+
+            // Log task data to ensure they're being fetched
+            foreach (var task in tasks)
+            {
+                Console.WriteLine($"Task: {task.TaskName}, Quadrant: {task.Quadrant}");
+            }
             return View(tasks);
         }
 

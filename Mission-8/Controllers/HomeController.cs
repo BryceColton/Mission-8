@@ -21,7 +21,8 @@ namespace Mission_8.Controllers
         }
         public IActionResult Quadrants()
         {
-            return View();
+            var tasks = new List<TaskModel>();
+            return View(tasks);
         }
 
         [HttpGet]

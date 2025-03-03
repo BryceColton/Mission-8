@@ -28,5 +28,15 @@ namespace Mission_8.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult AddEditTask()
+        {
+            return View();
+        }
+
+        public IActionResult Quadrants()
+        {
+            return View();
+        }
     }
 }

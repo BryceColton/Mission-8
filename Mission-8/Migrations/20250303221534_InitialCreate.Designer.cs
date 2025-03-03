@@ -11,7 +11,7 @@ using Mission_8.Models;
 namespace Mission_8.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250303212552_InitialCreate")]
+    [Migration("20250303221534_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

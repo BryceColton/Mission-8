@@ -14,14 +14,21 @@ namespace Mission_8.Controllers
         {
             _dbContext = dbContext;
         }
-
         public IActionResult index()
         {
             return View();
         }
         public IActionResult Quadrants()
         {
-            var tasks = new List<TaskModel>();
+            var tasks = _dbContext.Tasks
+            .Where(t => !t.Completed) // Only show incomplete tasks
+            .ToList();
+
+            // Log task data to ensure they're being fetched
+            foreach (var task in tasks)
+            {
+                Console.WriteLine($"Task: {task.TaskName}, Quadrant: {task.Quadrant}");
+            }
             return View(tasks);
         }
         public IActionResult Confirmation()
@@ -57,26 +64,26 @@ namespace Mission_8.Controllers
             {
                 if (task.TaskId == 0)
                 {
-                    _dbContext.Tasks.Add(task); // Add new task
+    
                 }
                 else
                 {
                     _dbContext.Tasks.Update(task); // Update existing task
                 }
 
-                _dbContext.SaveChanges();
-                return RedirectToAction("Confirmation"); // Redirect after save
+
             }
+            _dbContext.Tasks.Add(task); // Add new task
+            _dbContext.SaveChanges();
+            return RedirectToAction("Confirmation"); // Redirect after save
 
-            // Reload categories if validation fails
-            ViewBag.Categories = _dbContext.Categories
-                .Select(c => new SelectListItem { Value = c.CategoryId.ToString(), Text = c.CategoryName })
-                .ToList();
+            //// Reload categories if validation fails
+            //ViewBag.Categories = _dbContext.Categories
+            //    .Select(c => new SelectListItem { Value = c.CategoryId.ToString(), Text = c.CategoryName })
+            //    .ToList();
 
-            return View(task);
+            //return View(task);
         }
-
-       
 
     }
 }

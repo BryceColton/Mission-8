@@ -52,30 +52,26 @@ namespace Mission_8.Controllers
             {
                 if (task.TaskId == 0)
                 {
-                    _dbContext.Tasks.Add(task); // Add new task
+    
                 }
                 else
                 {
                     _dbContext.Tasks.Update(task); // Update existing task
                 }
 
-                _dbContext.SaveChanges();
-                return RedirectToAction("Confirmation"); // Redirect after save
+
             }
+            _dbContext.Tasks.Add(task); // Add new task
+            _dbContext.SaveChanges();
+            return RedirectToAction("Confirmation"); // Redirect after save
 
-            // Reload categories if validation fails
-            ViewBag.Categories = _dbContext.Categories
-                .Select(c => new SelectListItem { Value = c.CategoryId.ToString(), Text = c.CategoryName })
-                .ToList();
+            //// Reload categories if validation fails
+            //ViewBag.Categories = _dbContext.Categories
+            //    .Select(c => new SelectListItem { Value = c.CategoryId.ToString(), Text = c.CategoryName })
+            //    .ToList();
 
-            return View(task);
+            //return View(task);
         }
-
-<<<<<<< HEAD
-
-=======
-       
->>>>>>> 9da72d50fb248bffbf817c48efff8919da289c5b
 
     }
 }

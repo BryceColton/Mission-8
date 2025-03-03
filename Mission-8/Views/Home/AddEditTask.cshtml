@@ -12,26 +12,30 @@
     <div class="form-group">
         <label asp-for="TaskName"></label>
         <input asp-for="TaskName" class="form-control" required />
+        <span class="text-danger" asp-validation-for="TaskName"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="DueDate"></label>
         <input asp-for="DueDate" type="date" class="form-control" />
+        <span class="text-danger" asp-validation-for="DueDate"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Quadrant"></label>
         <select asp-for="Quadrant" class="form-control">
-            <option value="Quadrant I">Quadrant I - Important / Urgent</option>
-            <option value="Quadrant II">Quadrant II - Important / Not Urgent</option>
-            <option value="Quadrant III">Quadrant III - Not Important / Urgent</option>
-            <option value="Quadrant IV">Quadrant IV - Not Important / Not Urgent</option>
+            <option value="I">Quadrant I - Important / Urgent</option>
+            <option value="II">Quadrant II - Important / Not Urgent</option>
+            <option value="III">Quadrant III - Not Important / Urgent</option>
+            <option value="IV">Quadrant IV - Not Important / Not Urgent</option>
         </select>
+        <span class="text-danger" asp-validation-for="Quadrant"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="CategoryId"></label>
         <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
+        <span class="text-danger" asp-validation-for="CategoryId"></span>
     </div>
 
     <div class="form-group form-check">
@@ -42,3 +46,7 @@
     <button type="submit" class="btn btn-primary">Save</button>
     <a asp-action="Quadrants" class="btn btn-secondary">Cancel</a>
 </form>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

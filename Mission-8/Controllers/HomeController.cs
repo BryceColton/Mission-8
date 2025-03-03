@@ -20,7 +20,8 @@ namespace Mission_8.Controllers
         }
         public IActionResult Quadrants()
         {
-            return View();
+            var tasks = new List<TaskModel>();
+            return View(tasks);
         }
 
         [HttpGet]
@@ -59,7 +60,7 @@ namespace Mission_8.Controllers
                 }
 
                 _dbContext.SaveChanges();
-                return RedirectToAction("Quadrants"); // Redirect after save
+                return RedirectToAction("Confirmation"); // Redirect after save
             }
 
             // Reload categories if validation fails
@@ -70,7 +71,11 @@ namespace Mission_8.Controllers
             return View(task);
         }
 
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> 9da72d50fb248bffbf817c48efff8919da289c5b
 
     }
 }

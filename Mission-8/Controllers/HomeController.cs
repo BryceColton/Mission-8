@@ -24,6 +24,10 @@ namespace Mission_8.Controllers
             var tasks = new List<TaskModel>();
             return View(tasks);
         }
+        public IActionResult Confirmation()
+        {
+            return View();
+        }
 
         [HttpGet]
         public IActionResult AddEditTask(int? id)

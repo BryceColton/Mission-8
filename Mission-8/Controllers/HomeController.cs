@@ -14,7 +14,6 @@ namespace Mission_8.Controllers
         {
             _dbContext = dbContext;
         }
-
         public IActionResult index()
         {
             return View();
@@ -70,6 +69,8 @@ namespace Mission_8.Controllers
 
             return View(task);
         }
+
+
 
     }
 }

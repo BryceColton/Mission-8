@@ -68,8 +68,8 @@ namespace Mission_8.Controllers
                 else
                 {
                     _dbContext.Tasks.Update(task); // Update existing task
-                    _dbContext.SaveChanges();
-            }
+                    _dbContext.SaveChanges(); 
+                }
 
             return RedirectToAction("Confirmation"); // Redirect after save
 
@@ -79,6 +79,19 @@ namespace Mission_8.Controllers
             //    .ToList();
 
             //return View(task);
+        }
+        
+        [HttpGet]
+        public IActionResult DeleteTask(int id)
+        {
+            var task = _dbContext.Tasks.Find(id);
+            if (task != null)
+            {
+                _dbContext.Tasks.Remove(task);
+                _dbContext.SaveChanges();
+            }
+    
+            return RedirectToAction("Quadrants");
         }
 
     }

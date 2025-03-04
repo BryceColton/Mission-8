@@ -12,8 +12,8 @@
                 {
                     <li>
                         @task.TaskName - Due: @task.DueDate
-                        <a href="/Home/AddEditTask/@task.TaskId">Edit</a> |
-                        <a href="/Tasks/Delete/@task.TaskId">Delete</a>
+                        <a asp-controller="Home" asp-action="AddEditTask" asp-route-id="@task.TaskId">Update</a> |
+                        <a asp-controller="Home" asp-action="DeleteTask" asp-route-id="@task.TaskId">Delete</a>
                     </li>
                 }
             </ul>
@@ -27,8 +27,8 @@
                 {
                     <li>
                         @task.TaskName - Due: @task.DueDate
-                        <a href="/Tasks/Edit/@task.TaskId">Edit</a> |
-                        <a href="/Tasks/Delete/@task.TaskId">Delete</a>
+                        <a asp-controller="Home" asp-action="AddEditTask" asp-route-id="@task.TaskId">Update</a> |
+                        <a asp-controller="Home" asp-action="DeleteTask" asp-route-id="@task.TaskId">Delete</a>
                     </li>
                 }
             </ul>
@@ -44,8 +44,8 @@
                 {
                     <li>
                         @task.TaskName - Due: @task.DueDate
-                        <a href="/Tasks/Edit/@task.TaskId">Edit</a> |
-                        <a href="/Tasks/Delete/@task.TaskId">Delete</a>
+                        <a asp-controller="Home" asp-action="AddEditTask" asp-route-id="@task.TaskId">Update</a> |
+                        <a asp-controller="Home" asp-action="DeleteTask" asp-route-id="@task.TaskId">Delete</a>
                     </li>
                 }
             </ul>
@@ -59,8 +59,8 @@
                 {
                     <li>
                         @task.TaskName - Due: @task.DueDate
-                        <a href="/Tasks/Edit/@task.TaskId">Edit</a> |
-                        <a href="/Tasks/Delete/@task.TaskId">Delete</a>
+                        <a asp-controller="Home" asp-action="AddEditTask" asp-route-id="@task.TaskId">Update</a> |
+                        <a asp-controller="Home" asp-action="DeleteTask" asp-route-id="@task.TaskId">Delete</a>
                     </li>
                 }
             </ul>
